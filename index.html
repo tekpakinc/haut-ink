@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -6,16 +6,15 @@
   <title>Haut Ink • Custom Tattoo Studio</title>
   <meta name="description" content="Haut Ink — custom tattoos, fine-line, blackwork, and cover-ups. Clean, licensed studio. Book a consult today.">
   <meta name="theme-color" content="#0a0a0b">
-  <link rel="icon" href="favicon.png">
+  <link rel="icon" href="favicon.png" type="image/png">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Haut Ink • Custom Tattoo Studio">
   <meta property="og:description" content="Fine-line, blackwork, realism, and cover-ups. Book a consult today.">
-  <meta property="og:image" content="/assets/images/og-preview.jpg"><!-- local OG image -->
+  <meta property="og:image" content="assets/images/og-preview.jpg">
   <meta property="og:type" content="website">
 
   <style>
-    /* (same CSS as before, unchanged) */
     :root{
       --bg:#0b0b0d;
       --surface:#111216;
@@ -24,169 +23,258 @@
       --muted:#a9a7a2;
       --accent:#b98b5a;
       --accent-2:#7e4cff;
-      --danger:#e34b4b;
       --shadow: 0 10px 30px rgba(0,0,0,.45);
       --radius: 16px;
     }
-    /* ... (keep the rest of your CSS as is) ... */
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      background:radial-gradient(1200px 800px at 70% -10%, #17181f 0%, #0b0b0d 55%, #09090a 100%);
+      color:var(--ink);
+      font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1200px,92vw);margin-inline:auto}
+    .glass{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      backdrop-filter: blur(8px);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .btn{
+      display:inline-flex;gap:.6rem;align-items:center;
+      padding:.9rem 1.1rem;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg,#1c1d23,#121318);
+      color:var(--ink);
+      transition:.2s transform,.2s box-shadow;
+      cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-2px); box-shadow:0 12px 24px rgba(0,0,0,.35)}
+    .btn.primary{background:linear-gradient(180deg, #2a2b34, #17171d);}
+    .btn.accent{
+      background:linear-gradient(180deg, var(--accent), #6d4f33);
+      color:#0b0b0b;
+      border-color:#caa77c;
+    }
+    .tag{
+      display:inline-block;
+      padding:.25rem .6rem;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:999px;
+      font-size:.8rem;
+      color:var(--muted);
+    }
+    header{
+      position:sticky;top:0;z-index:50;
+      background:linear-gradient(180deg, rgba(10,10,11,.7), rgba(10,10,11,0));
+      backdrop-filter:saturate(1.1) blur(6px);
+    }
+    nav{display:flex;align-items:center;justify-content:space-between;padding:.7rem 0}
+    .brand{display:flex;align-items:center;gap:.8rem}
+    .brand-logo{
+      width:38px;height:38px;border-radius:10px;
+      background:conic-gradient(from 210deg at 50% 50%, #292a31, #1a1b20 40%, #292a31 70%, #1a1b20);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 4px 16px rgba(0,0,0,.4)
+    }
+    .brand h1{font-size:1.05rem;letter-spacing:.14em;font-weight:700;text-transform:uppercase}
+    .nav-links{display:flex;gap:1rem}
+    .nav-links a{padding:.5rem .7rem;border-radius:10px}
+    .nav-links a:hover{background:rgba(255,255,255,.06)}
+    .menu-toggle{display:none}
+    @media (max-width:860px){
+      .nav-links{display:none}
+      .menu-toggle{display:inline-flex}
+    }
+    .hero{position:relative;padding:80px 0 40px;overflow:hidden}
+    .hero::after{
+      content:"";position:absolute;inset:auto -10% -40% -10%;height:50vh;
+      background:radial-gradient(60% 40% at 50% 0%, rgba(185,139,90,.25), transparent 60%),
+                 radial-gradient(35% 30% at 80% 10%, rgba(126,76,255,.18), transparent 60%);
+      filter: blur(40px);pointer-events:none;
+    }
+    .hero-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
+    @media (max-width:960px){.hero-inner{grid-template-columns:1fr}}
+    .hero-card{padding:28px}
+    .headline{font-size:clamp(28px, 4vw, 44px);line-height:1.12;margin:0 0 10px}
+    .headline em{
+      font-style:normal;
+      background:linear-gradient(90deg,var(--accent) 0%, var(--accent-2) 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .sub{color:var(--muted);max-width:64ch;margin:10px 0 18px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:.8rem}
+    .hero-photo{border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+    .hero-photo img{object-fit:cover;width:100%;height:100%;filter:saturate(.9) contrast(1.05)}
+    .section{padding:40px 0}
+    .section h2{font-size:clamp(22px, 3vw, 34px);margin:0 0 12px}
+    .section .lead{color:var(--muted);margin:0 0 18px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media (max-width:960px){.cards{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.cards{grid-template-columns:1fr}}
+    .card{padding:18px}
+    .artist{display:grid;grid-template-rows:auto 1fr auto;gap:12px}
+    .portrait{aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:#17181d;box-shadow:var(--shadow)}
+    .chips{display:flex;flex-wrap:wrap;gap:.4rem}
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    @media (max-width:980px){.gallery{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:680px){.gallery{grid-template-columns:repeat(2,1fr)}}
+    .tile{position:relative;border-radius:12px;overflow:hidden;cursor:zoom-in}
+    .tile::after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.08);border-radius:12px;pointer-events:none}
+    .tile img{width:100%;height:100%;object-fit:cover;transition:transform .25s}
+    .tile:hover img{transform:scale(1.04)}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width:860px){.grid-2{grid-template-columns:1fr}}
+    footer{margin-top:40px;padding:26px 0;color:#c9c7c2;border-top:1px solid rgba(255,255,255,.08)}
+    .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}
+    @media (max-width:900px){.cols{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.cols{grid-template-columns:1fr}}
+    .muted{color:var(--muted)}
+    .hrs{display:grid;grid-template-columns:auto auto;gap:6px 14px}
+    .map{border:0;width:100%;height:260px;border-radius:14px;filter:grayscale(40%)}
+    dialog::backdrop{background:rgba(0,0,0,.6)}
+    dialog{border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:0;background:#0e0f13}
+    .lightbox img{max-height:80vh;width:100%;object-fit:contain;background:#0e0f13}
+    .lightbox header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .x{background:none;border:0;color:var(--ink);font-size:1.1rem;cursor:pointer;padding:.4rem .6rem;border-radius:10px}
+    .x:hover{background:rgba(255,255,255,.08)}
   </style>
 
-  <!-- LocalBusiness Schema -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"TattooParlor",
     "name":"Haut Ink",
-    "image":"/assets/images/og-preview.jpg",
-    "url":"https://www.hautink.example", 
+    "image":"assets/images/og-preview.jpg",
+    "url":"https://www.hautink.example",
     "telephone":"+1-000-000-0000",
-    "address": {"@type":"PostalAddress","streetAddress":"123 Main St","addressLocality":"Your City","addressRegion":"NC","postalCode":"00000","addressCountry":"US"},
-    "openingHoursSpecification":[
-      {"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"12:00","closes":"20:00"}
-    ],
+    "address":{"@type":"PostalAddress","streetAddress":"123 Main St","addressLocality":"Your City","addressRegion":"NC","postalCode":"00000","addressCountry":"US"},
+    "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"12:00","closes":"20:00"}],
     "priceRange":"$$"
   }
   </script>
 </head>
 <body>
 
-  <!-- Header -->
+<header>
+  <div class="container">
+    <nav>
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true"></div>
+        <h1>Haut Ink</h1>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="#artists">Artists</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#booking" class="btn accent">Book Consult</a>
+      </div>
+      <button class="btn menu-toggle" aria-label="Toggle menu" onclick="toggleMenu()">☰</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-card glass">
+      <span class="tag">Fine-line • Blackwork • Realism</span>
+      <h2 class="headline">Ink that wears like <em>luxury</em>.</h2>
+      <p class="sub">Haut Ink is a craft-first studio specializing in fine-line, blackwork, realism, and thoughtful cover-ups.</p>
+      <div class="hero-actions">
+        <a class="btn accent" href="#booking">Book a consult</a>
+        <a class="btn primary" href="#gallery">Browse gallery</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="assets/images/hero-studio.jpg" alt="Haut Ink Studio">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="artists">
+  <div class="container">
+    <h2>Artists</h2>
+    <p class="lead">Three styles, one standard: intention and precision.</p>
+    <div class="cards">
+      <article class="artist glass card">
+        <div class="portrait"><img src="assets/images/artist-nova.jpg" alt="Nova — Fine Line"></div>
+        <div>
+          <h3>Nova — Fine Line</h3>
+          <p class="muted">Delicate linework, micro-florals, script.</p>
+          <div class="chips"><span class="tag">Fine-line</span><span class="tag">Micro</span><span class="tag">Script</span></div>
+        </div>
+        <a class="btn" href="#booking">Request Nova</a>
+      </article>
+
+      <article class="artist glass card">
+        <div class="portrait"><img src="assets/images/artist-lumen.jpg" alt="Lumen — Blackwork"></div>
+        <div>
+          <h3>Lumen — Blackwork</h3>
+          <p class="muted">Crisp geometry, ornamental layouts, and bold negative space.</p>
+          <div class="chips"><span class="tag">Blackwork</span><span class="tag">Geometric</span></div>
+        </div>
+        <a class="btn" href="#booking">Request Lumen</a>
+      </article>
+
+      <article class="artist glass card">
+        <div class="portrait"><img src="assets/images/artist-vale.jpg" alt="Vale — Realism"></div>
+        <div>
+          <h3>Vale — Realism & Cover-ups</h3>
+          <p class="muted">Photo-real portraiture and tasteful solutions for old ink.</p>
+          <div class="chips"><span class="tag">Realism</span><span class="tag">Cover-up</span></div>
+        </div>
+        <a class="btn" href="#booking">Request Vale</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="container">
+    <h2>Gallery</h2>
+    <p class="lead">Recent work. Tap to zoom.</p>
+    <div class="gallery">
+      <a class="tile" href="assets/images/gallery1.jpg" onclick="openLightbox(event,this)"><img src="assets/images/gallery1.jpg" alt=""></a>
+      <a class="tile" href="assets/images/gallery2.jpg" onclick="openLightbox(event,this)"><img src="assets/images/gallery2.jpg" alt=""></a>
+      <a class="tile" href="assets/images/gallery3.jpg" onclick="openLightbox(event,this)"><img src="assets/images/gallery3.jpg" alt=""></a>
+      <a class="tile" href="assets/images/gallery4.jpg" onclick="openLightbox(event,this)"><img src="assets/images/gallery4.jpg" alt=""></a>
+      <a class="tile" href="assets/images/gallery5.jpg" onclick="openLightbox(event,this)"><img src="assets/images/gallery5.jpg" alt=""></a>
+      <a class="tile" href="assets/images/gallery6.jpg" onclick="openLightbox(event,this)"><img src="assets/images/gallery6.jpg" alt=""></a>
+      <a class="tile" href="assets/images/gallery7.jpg" onclick="openLightbox(event,this)"><img src="assets/images/gallery7.jpg" alt=""></a>
+      <a class="tile" href="assets/images/gallery8.jpg" onclick="openLightbox(event,this)"><img src="assets/images/gallery8.jpg" alt=""></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <p class="muted">© <span id="y"></span> Haut Ink. All rights reserved.</p>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <span class="tag">Licensed & Inspected</span>
+      <span class="tag">Single-use needles</span>
+      <span class="tag">Sanitary Protocols</span>
+    </div>
+  </div>
+</footer>
+
+<dialog id="lightbox" class="lightbox">
   <header>
-    <div class="container">
-      <nav>
-        <div class="brand">
-          <div class="brand-logo" aria-hidden="true"></div>
-          <h1>Haut Ink</h1>
-        </div>
-        <div class="nav-links" id="navLinks">
-          <a href="#artists">Artists</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
-          <a href="#booking" class="btn accent">Book Consult</a>
-        </div>
-        <button class="btn menu-toggle" aria-label="Toggle menu" onclick="toggleMenu()">☰</button>
-      </nav>
-    </div>
+    <strong>Gallery</strong>
+    <button class="x" onclick="closeLightbox()" aria-label="Close">✕</button>
   </header>
+  <img id="lightboxImg" src="" alt="">
+</dialog>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-card glass">
-        <span class="badge">Fine-line • Blackwork • Realism</span>
-        <h2 class="headline">Ink that wears like <em>luxury</em>.</h2>
-        <p class="sub">Haut Ink is a craft-first studio specializing in fine-line, blackwork, realism, and thoughtful cover-ups. Clean, licensed, and appointment-focused. Your idea, elevated.</p>
-        <div class="hero-actions">
-          <a class="btn accent" href="#booking">Book a consult</a>
-          <a class="btn primary" href="#gallery">Browse gallery</a>
-        </div>
-      </div>
-      <div class="hero-photo">
-        <img src="/assets/images/hero-studio.jpg" alt="Haut Ink Studio">
-      </div>
-    </div>
-  </section>
-
-  <!-- Artists -->
-  <section class="section" id="artists">
-    <div class="container">
-      <h2>Artists</h2>
-      <p class="lead">Three styles, one standard: intention and precision.</p>
-      <div class="cards">
-        <article class="artist glass card">
-          <div class="portrait">
-            <img src="/assets/images/artist-nova.jpg" alt="Nova — Fine Line">
-          </div>
-          <div>
-            <h3>Nova — Fine Line</h3>
-            <p class="muted">Delicate linework, micro-florals, script. Minimal scars, maximal detail.</p>
-            <div class="chips">
-              <span class="tag">Fine-line</span><span class="tag">Micro</span><span class="tag">Script</span>
-            </div>
-          </div>
-          <a class="btn" href="#booking">Request Nova</a>
-        </article>
-
-        <article class="artist glass card">
-          <div class="portrait">
-            <img src="/assets/images/artist-lumen.jpg" alt="Lumen — Blackwork & Geometry">
-          </div>
-          <div>
-            <h3>Lumen — Blackwork</h3>
-            <p class="muted">Crisp geometry, ornamental layouts, and bold negative space.</p>
-            <div class="chips">
-              <span class="tag">Blackwork</span><span class="tag">Ornamental</span><span class="tag">Geometric</span>
-            </div>
-          </div>
-          <a class="btn" href="#booking">Request Lumen</a>
-        </article>
-
-        <article class="artist glass card">
-          <div class="portrait">
-            <img src="/assets/images/artist-vale.jpg" alt="Vale — Realism & Cover-ups">
-          </div>
-          <div>
-            <h3>Vale — Realism & Cover-ups</h3>
-            <p class="muted">Photo-real portraiture and tasteful solutions for old ink.</p>
-            <div class="chips">
-              <span class="tag">Realism</span><span class="tag">Portrait</span><span class="tag">Cover-up</span>
-            </div>
-          </div>
-          <a class="btn" href="#booking">Request Vale</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section class="section" id="gallery">
-    <div class="container">
-      <h2>Gallery</h2>
-      <p class="lead">Recent work from the chair. Tap to zoom.</p>
-      <div class="gallery">
-        <a class="tile" href="/assets/images/gallery1.jpg" onclick="openLightbox(event,this)">
-          <img src="/assets/images/gallery1-thumb.jpg" alt="Fine-line floral forearm">
-        </a>
-        <a class="tile" href="/assets/images/gallery2.jpg" onclick="openLightbox(event,this)">
-          <img src="/assets/images/gallery2-thumb.jpg" alt="Blackwork mandala chest">
-        </a>
-        <a class="tile" href="/assets/images/gallery3.jpg" onclick="openLightbox(event,this)">
-          <img src="/assets/images/gallery3-thumb.jpg" alt="Realism portrait">
-        </a>
-        <a class="tile" href="/assets/images/gallery4.jpg" onclick="openLightbox(event,this)">
-          <img src="/assets/images/gallery4-thumb.jpg" alt="Ornamental sleeve">
-        </a>
-        <a class="tile" href="/assets/images/gallery5.jpg" onclick="openLightbox(event,this)">
-          <img src="/assets/images/gallery5-thumb.jpg" alt="Fineline script">
-        </a>
-        <a class="tile" href="/assets/images/gallery6.jpg" onclick="openLightbox(event,this)">
-          <img src="/assets/images/gallery6-thumb.jpg" alt="Back piece geometry">
-        </a>
-        <a class="tile" href="/assets/images/gallery7.jpg" onclick="openLightbox(event,this)">
-          <img src="/assets/images/gallery7-thumb.jpg" alt="Floral sternum">
-        </a>
-        <a class="tile" href="/assets/images/gallery8.jpg" onclick="openLightbox(event,this)">
-          <img src="/assets/images/gallery8-thumb.jpg" alt="Cover-up blackwork">
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- (rest of your content stays the same: pricing, FAQ, booking, footer, etc.) -->
-
-  <script>
-    // JS unchanged
-    function toggleMenu(){ const links = document.getElementById('navLinks'); links.style.display = links.style.display === 'flex' ? '' : 'flex'; if(links.style.display === 'flex'){ links.style.flexDirection='column'; links.style.gap='0.4rem'; }}
-    const lb=document.getElementById('lightbox');const lbImg=document.getElementById('lightboxImg');
-    function openLightbox(e,el){e.preventDefault();lbImg.src=el.getAttribute('href');lb.showModal();}
-    function closeLightbox(){lb.close();}
-    function submitBooking(e){e.preventDefault();const data=Object.fromEntries(new FormData(e.target).entries());
-      const mailto=`mailto:booking@hautink.example?subject=Consult%20Request%20-%20${encodeURIComponent(data.name||'New')}&body=${
-        encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone||''}\nArtist: ${data.artist||'Any'}\nPlacement: ${data.placement||''}\nStyle: ${data.style||''}\n\nIdea:\n${data.message}\n\n(Submitted from website)`)
-      }`;
-      window.location.href=mailto;}
-    document.getElementById('y').textContent=new Date().getFullYear();
-  </script>
-</body>
-</html>
+<script>
+function toggleMenu(){
+  const links=document.getElementById('navLinks');
+  links.style.display=links.style.display==='flex'?'':'flex';
+  if(links.style.display==='flex'){links.style.flexDirection='column';links.style.gap='0.4rem';}
+}
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lightboxImg');
+function openLightbox(e
